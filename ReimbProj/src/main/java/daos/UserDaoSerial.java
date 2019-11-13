@@ -28,7 +28,7 @@ public class UserDaoSerial implements UserDao {
 			lastname = rs.getString("USER_LAST_NAME");
 			email = rs.getString("USER_EMAIL");
 			roleId = Integer.parseInt(rs.getString("USER_ROLE_ID"));
-			
+
 		} catch (NumberFormatException e) {
 			return null;
 		} catch (SQLException e) {
@@ -49,7 +49,6 @@ public class UserDaoSerial implements UserDao {
 			ps.setString(5, "" + u.getLastName());
 			ps.setString(6, "" + u.getEmail());
 			ps.setString(7, "" + u.getRoleId());
-			
 
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -74,15 +73,27 @@ public class UserDaoSerial implements UserDao {
 			return users;
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 			return null;
 		}
 	}
 
 	@Override
 	public User findByCred(String username, String password) {
-		// TODO Auto-generated method stub
-		return null;
+		try (Connection c = ConnectionUtil.getConnection()) {
+
+			String sql = "SELECT * FROM ERS_USERS WHERE ERS_USERNAME = ? AND ERS_PASSWORD = ?";
+
+			PreparedStatement ps = c.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			List<User> users = new ArrayList<>();
+			while (rs.next()) {
+				users.add(extractUser(rs));
+			}
+
+			return users.get(0);
+
+		} catch (SQLException e) {
+			return null;
+		}
 	}
 }
