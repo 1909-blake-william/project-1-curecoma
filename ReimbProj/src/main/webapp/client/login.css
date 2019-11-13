@@ -32,6 +32,53 @@
     /* Opera */
 }
 
+.main {
+    margin: auto;
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    left: 5%;
+    right: 5%;
+    padding: 10px;
+    background-color: whitesmoke;
+    border-radius: 15px;
+    opacity: 0.75;
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    /* Firefox */
+    -webkit-animation: fadein 1s;
+    /* Safari and Chrome */
+    -o-animation: fadein 1s;
+    /* Opera */
+}
+
+.reimbs {
+    margin: auto;
+    height: 90%;
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    left: 5%;
+    right: 40%;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: white;
+}
+
+.actions {
+    margin: auto;
+    height: 90%;
+    position: absolute;
+    top: 5%;
+    bottom: 5%;
+    left: 65%;
+    right: 5%;
+    padding: 10px;
+    border-radius: 15px;
+    background-color: white;
+}
+
 @keyframes fadein {
     from {
 opacity: 0;
