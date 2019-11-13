@@ -26,10 +26,6 @@ public class Login extends HttpServlet {
 		if (user!=null) {
 			req.getSession().setAttribute("currentUser", username);
 			req.getSession().setAttribute("admin", user.getRoleId());
-			
-			// At this point in time, what are you trying to do? 
-			// Go to the home page!
-			// This is not used in REST API's. Only when using Server Side Rendering (In our case, JSP).
 			req.getRequestDispatcher("/main.html").include(req, resp);
 			return;
 		} else {
