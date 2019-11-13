@@ -1,0 +1,121 @@
+
+#bgGrad {
+    height: 100%;
+    background-color: #b967ff;
+    /* For browsers that do not support gradients */
+    background-image: linear-gradient(-30deg, #ff71ce, #b967ff, #ff71ce);
+    /* Standard syntax (must be last) */
+    background-attachment: fixed;
+    background-repeat: nones;
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+.center {
+    margin: auto;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    padding: 10px;
+    background-color: whitesmoke;
+    border-radius: 25px;
+    opacity: 0.75;
+    font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif;
+    animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    /* Firefox */
+    -webkit-animation: fadein 1s;
+    /* Safari and Chrome */
+    -o-animation: fadein 1s;
+    /* Opera */
+}
+
+@keyframes fadein {
+    from {
+opacity: 0;
+    }
+
+    to {
+opacity: 0.75;
+    }
+}
+
+@-moz-keyframes fadein {
+
+    /* Firefox */
+    from {
+opacity: 0;
+    }
+
+    to {
+opacity: 0.75;
+    }
+}
+
+@-webkit-keyframes fadein {
+
+    /* Safari and Chrome */
+    from {
+opacity: 0;
+    }
+
+    to {
+opacity: 0.75;
+    }
+}
+
+@-o-keyframes fadein {
+
+    /* Opera */
+    from {
+opacity: 0;
+    }
+
+    to {
+opacity: 0.75;
+    }
+}
+
+/* Set a style for all buttons */
+button {
+    background-color: rgb(255, 159, 159);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.primary {
+    font-size: 2em;
+}
+
+
+@keyframes gradientBG {
+    0% {
+background-position: 0% 50%;
+    }
+
+    50% {
+background-position: 100% 50%;
+    }
+
+    100% {
+background-position: 0% 50%;
+    }
+}
+
+
+input[type=text],
+input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
