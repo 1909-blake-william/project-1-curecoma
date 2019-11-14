@@ -5,18 +5,22 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class User implements Serializable {
 	private int id;
-	private String name;
-	private String Password;
+	private String username;
+	private String password;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private int roleId;
 
+	public User() {
+		super();
+	}
+
 	public User(int id, String name, String password, String firstName, String lastName, String email, int roleId) {
 		super();
 		this.id = id;
-		this.name = name;
-		Password = password;
+		this.username = name;
+		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -31,20 +35,20 @@ public class User implements Serializable {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getPassword() {
-		return Password;
+		return password;
 	}
 
 	public void setPassword(String password) {
-		Password = password;
+		this.password = password;
 	}
 
 	public String getFirstName() {
@@ -67,6 +71,12 @@ public class User implements Serializable {
 		return email;
 	}
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", password=" + password + ", firstName=" + firstName
+				+ ", lastName=" + lastName + ", email=" + email + ", roleId=" + roleId + "]";
+	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -78,5 +88,6 @@ public class User implements Serializable {
 	public void setRoleId(int roleId) {
 		this.roleId = roleId;
 	}
+	
 
 }

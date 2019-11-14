@@ -9,15 +9,14 @@ public class ConnectionUtil {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
 
 	public static Connection getConnection() throws SQLException {
-		String url = System.getenv("I");
-		String username = System.getenv("don't");
-		String password = System.getenv("remember");
+		String url = System.getenv("REIMB_URL");
+		String username = System.getenv("REIMB_UN");
+		String password = System.getenv("REIMB_PW");
 		return DriverManager.getConnection(url, username, password);
 	}
 }

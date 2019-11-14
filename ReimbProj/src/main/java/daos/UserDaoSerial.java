@@ -43,7 +43,7 @@ public class UserDaoSerial implements UserDao {
 			String str = "INSERT INTO ERS_USERS (ERS_USERS_ID, ERS_USERNAME, ERS_PASSWORD, USER_FIRST_NAME, USER_LAST_NAME, USER_EMAIL, USER_ROLE_ID) VALUES (?,?,?,?,?,?,?)";
 			PreparedStatement ps = c.prepareStatement(str);
 			ps.setString(1, "" + u.getId());
-			ps.setString(2, "" + u.getName());
+			ps.setString(2, "" + u.getUsername());
 			ps.setString(3, "" + u.getPassword());
 			ps.setString(4, "" + u.getFirstName());
 			ps.setString(5, "" + u.getLastName());
@@ -93,6 +93,7 @@ public class UserDaoSerial implements UserDao {
 			return users.get(0);
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 			return null;
 		}
 	}

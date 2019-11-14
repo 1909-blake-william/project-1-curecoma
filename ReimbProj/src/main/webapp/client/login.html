@@ -3,24 +3,25 @@
 
 <head>
     <link rel="stylesheet" type="text/css" href="login.css">
-    
+
 </head>
 
 <body id="bgGrad">
     <div class="center">
-        </br> </br>
+        </br>
         <label class="primary" for="uname"><b>Username</b></label>
-        <input type="text" placeholder="Enter Username" id="uname" name = "uname" required>
+        <input type="text" placeholder="Enter Username" id="uname" name="uname" required>
         </br> </br>
         <label class="primary" for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" id="psw" name = "psw" required>
+        <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
         </br> </br>
-        <button type="submit">Login</button>
+        <button type="button" onclick="login()">Login</button>
         <label>
-            <input type="checkbox" checked="checked" name="remember"> Remember me
+            <input type="checkbox" name="remember"> Remember me
         </label>
+        <div id="error-message"></div>
     </div>
 </body>
-
+<script src="login.js"></script>
 
 </html>
