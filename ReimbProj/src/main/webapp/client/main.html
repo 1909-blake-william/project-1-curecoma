@@ -9,12 +9,58 @@
 <body id="bgGrad">
     <div class="main">
         <div class="reimbs">
-            test
+            <table>
+                <tr>
+                    <th>Firstname</th>
+                    <th>Lastname</th>
+                    <th>Age</th>
+                </tr>
+                <tr>
+                    <td>Jill</td>
+                    <td>Smith</td>
+                    <td>50</td>
+                </tr>
+                <tr>
+                    <td>Eve</td>
+                    <td>Jackson</td>
+                    <td>94</td>
+                </tr>
+            </table>
             <!--the reimbursements will be displayed here-->
         </div>
 
         <div class="actions">
-            test
+            <!--
+            <div id="user">
+                <label class="primary" for="amount"><b>Amount</b></label>
+                <input type="number" placeholder="0.00" id="amount" name="amount" required>
+                <label class="primary" for="type"><b>Type</b></label>
+                <select id="type" name="type">
+                    <option value="1">Lodging</option>
+                    <option value="2">Food</option>
+                    <option value="3">Travel</option>
+                    <option value="4">Other</option>
+                </select>
+                <label class="primary" for="description"><b>Description</b></label>
+                <textarea rows="8" cols="30" type="text"  placeholder="Max 200 letters" id="description" name="description" maxlength="200"></textarea>
+                <button type="button" onclick="SubmitReimb()">Submit New Reimbursement</button>
+            </div>
+            -->
+            <div id="manager">
+                <img src="logo.png" alt="Revature Logo">
+                <input type="text" placeholder="Enter requestor name" id="uname" name="requestor" required>
+                <button type="button" onclick="FilterByUser()">Filter by requestor</button>
+                Select status
+                <select id="status" name="status">
+                    <option value="den">Denied</option>
+                    <option value="pen">Pending</option>
+                    <option value="app">Approved</option>
+                    <option value="den">Denied</option>
+                </select>
+                <button type="button" onclick="FilterByStatus()">Filter by status</button>
+                <button type="button" onclick="ApproveSelected()">Approve all selected</button>
+                <button type="button" onclick="DenySelected()">Approve all denied</button>
+            </div>
             <!--the action buttons will be displayed here-->
         </div>
     </div>

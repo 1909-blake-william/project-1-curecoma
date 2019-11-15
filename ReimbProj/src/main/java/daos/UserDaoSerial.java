@@ -84,6 +84,9 @@ public class UserDaoSerial implements UserDao {
 			String sql = "SELECT * FROM ERS_USERS WHERE ERS_USERNAME = ? AND ERS_PASSWORD = ?";
 
 			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setString(1, "" + username);
+			ps.setString(2, "" + password);
+			
 			ResultSet rs = ps.executeQuery();
 			List<User> users = new ArrayList<>();
 			while (rs.next()) {
