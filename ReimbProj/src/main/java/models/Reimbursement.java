@@ -1,8 +1,13 @@
 package models;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import daos.UserDao;
 
 public class Reimbursement {
+
+	UserDao userDao = UserDao.currentImplementation;
+
 	private int reimbId;
 	private int amount;
 	private LocalDateTime created;
@@ -43,16 +48,23 @@ public class Reimbursement {
 		this.amount = amount;
 	}
 
-	public LocalDateTime getCreated() {
-		return created;
+	public String getCreated() {// convert to readable text
+		String createdSt = DateTimeFormatter.ISO_LOCAL_DATE.format(created).replace('-', '/') + " "
+				+ DateTimeFormatter.ISO_LOCAL_TIME.format(created);
+		return createdSt;
 	}
 
 	public void setCreated(LocalDateTime created) {
 		this.created = created;
 	}
 
-	public LocalDateTime getResolved() {
-		return resolved;
+	public String getResolved() {// convert to readable text
+		if (resolved == null) {
+			return " ";
+		}
+		String resolvedSt = DateTimeFormatter.ISO_LOCAL_DATE.format(resolved).replace('-', '/') + " "
+				+ DateTimeFormatter.ISO_LOCAL_TIME.format(resolved);
+		return resolvedSt;
 	}
 
 	public void setResolved(LocalDateTime resolved) {
@@ -67,31 +79,69 @@ public class Reimbursement {
 		this.description = description;
 	}
 
-	public int getAuthor() {
-		return author;
+	public String getAuthor() {
+		String u = "";
+		try {
+			u = userDao.findByUserName(author).getUsername();
+		} catch (Exception e) {
+			return " ";
+		}
+		return u;
 	}
 
 	public void setAuthor(int author) {
 		this.author = author;
 	}
 
-	public int getResolver() {
-		return resolver;
+	public String getResolver() {
+		String u = "";
+		try {
+			u = userDao.findByUserName(resolver).getUsername();
+		} catch (Exception e) {
+			return " ";
+		}
+		return u;
 	}
 
 	public void setResolver(int resolver) {
 		this.resolver = resolver;
 	}
 
-	public int getStatus() {
-		return status;
+	public String getStatus() {
+		switch (status) {
+		case (1):
+			return "Pending";
+		case (2):
+			return "Approved";
+		case (3):
+			return "Denied";
+		}
+		return " ";
 	}
 
 	public void setStatus(int status) {
 		this.status = status;
 	}
 
-	public int getType() {
+	public String getType() {
+		switch (type) {
+		case (1):
+			return "Lodging";
+		case (2):
+			return "Travel";
+		case (3):
+			return "Food";
+		case (4):
+			return "Other";
+		}
+		return " ";
+	}
+
+	public int getAuthor(int i) {
+		return author;
+	}
+
+	public int getType(int i) {
 		return type;
 	}
 
@@ -99,4 +149,10 @@ public class Reimbursement {
 		this.type = type;
 	}
 
+	@Override
+	public String toString() {
+		return "Reimbursement [reimbId=" + reimbId + ", amount=" + amount + ", created=" + getCreated() + ", resolved="
+				+ resolved + ", description=" + description + ", author=" + author + ", resolver=" + resolver
+				+ ", status=" + status + ", type=" + type + "]";
+	}
 }

@@ -6,9 +6,7 @@ import java.util.List;
 import models.Reimbursement;
 
 public interface ReimbDao {
-
-
-	UserDao currentImplementation = new UserDaoSerial();
+	ReimbDao currentImplementation = new ReimbDaoSerial();
 
 	/**
 	 * used to save a new user
@@ -17,9 +15,10 @@ public interface ReimbDao {
 	 * @return the generated id for the user
 	 */
 	Reimbursement extractReimbursement(ResultSet rs);
-	
 	long save(Reimbursement u);
-
 	List<Reimbursement> findAll();
+	Reimbursement findByID(int reimbId);
+	int makeReimb(int amount, String description, int author, int type);
+	int resolve(int id, int resolver, int type);
 
 }

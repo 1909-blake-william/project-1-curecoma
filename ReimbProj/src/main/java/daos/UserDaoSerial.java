@@ -78,6 +78,29 @@ public class UserDaoSerial implements UserDao {
 	}
 
 	@Override
+	public User findByUserName(int userId) {
+		try (Connection c = ConnectionUtil.getConnection()) {
+
+			String sql = "SELECT * FROM ERS_USERS WHERE ERS_USERS_ID = ?";
+
+			PreparedStatement ps = c.prepareStatement(sql);
+			ps.setString(1, "" + userId);
+			
+			ResultSet rs = ps.executeQuery();
+			List<User> users = new ArrayList<>();
+			while (rs.next()) {
+				users.add(extractUser(rs));
+			}
+
+			return users.get(0);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@Override
 	public User findByCred(String username, String password) {
 		try (Connection c = ConnectionUtil.getConnection()) {
 
@@ -95,7 +118,7 @@ public class UserDaoSerial implements UserDao {
 
 			return users.get(0);
 
-		} catch (SQLException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}

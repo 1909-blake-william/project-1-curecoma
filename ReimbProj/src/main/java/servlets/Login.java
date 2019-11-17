@@ -9,13 +9,17 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import daos.ReimbDao;
 import daos.UserDao;
 import models.User;
 
 @SuppressWarnings("serial")
 public class Login extends HttpServlet {
 
+	static User loggedInUser = null;
+
 	UserDao userDao = UserDao.currentImplementation;
+	ReimbDao reimbDao = ReimbDao.currentImplementation;
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,10 +44,10 @@ public class Login extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if ("/ReimbProj/login".equals(req.getRequestURI())) {
-			ObjectMapper om = new ObjectMapper(); //make object mapper
+			ObjectMapper om = new ObjectMapper(); // make object mapper
 			User credentials = (User) om.readValue(req.getReader(), User.class); //
 			System.out.println(credentials.getUsername() + ":" + credentials.getPassword());
-			User loggedInUser = userDao.findByCred(credentials.getUsername(), credentials.getPassword());
+			loggedInUser = userDao.findByCred(credentials.getUsername(), credentials.getPassword());
 			if (loggedInUser == null) {
 				resp.setStatus(401); // Unauthorized status code
 				return;
@@ -55,4 +59,5 @@ public class Login extends HttpServlet {
 			}
 		}
 	}
+
 }

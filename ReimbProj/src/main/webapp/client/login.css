@@ -1,4 +1,4 @@
-
+/*background info*/
 #bgGrad {
     height: 100%;
     background-color: #b967ff;
@@ -11,10 +11,37 @@
     animation: gradientBG 15s ease infinite;
 }
 
+@keyframes gradientBG {
+    0% {
+background-position: 0% 50%;
+    }
+
+    50% {
+background-position: 100% 50%;
+    }
+
+    100% {
+background-position: 0% 50%;
+    }
+}
+/*background info*/
+
+/*text styling*/
 #error-message{
     color: red;
 }
 
+.primary {
+    font-size: 2em;
+}
+
+label{
+    margin: 5px 5px 5px 5px;
+}
+/*text styling*/
+
+
+/*container info*/
 .center {
     margin: auto;
     height: 50%;
@@ -41,8 +68,8 @@
     position: absolute;
     top: 5%;
     bottom: 5%;
-    left: 5%;
-    right: 5%;
+    left: 2.5%;
+    right: 2.5%;
     padding: 10px;
     background-color: whitesmoke;
     border-radius: 15px;
@@ -61,52 +88,32 @@
     margin: auto;
     height: 90%;
     position: absolute;
-    top: 5%;
-    bottom: 5%;
-    left: 5%;
-    right: 40%;
+    top: 2%;
+    bottom: 2%;
+    left: 2%;
+    right: 28%;
     padding: 10px;
     border-radius: 15px;
     background-color: white;
+    
+    overflow-x:auto;
+    overflow-y: auto;
 }
 
 .actions {
     margin: auto;
     height: 90%;
     position: absolute;
-    top: 5%;
-    bottom: 5%;
-    left: 65%;
-    right: 5%;
+    top: 2.5%;
+    bottom: 2.5%;
+    left: 75%;
+    right: 2.5%;
     padding: 10px;
     border-radius: 15px;
     background-color: white;
     line-height: 2.5em;
     text-overflow: " "; 
     display: flex;
-}
-
-img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 90%;
-    max-height: 90%;
-    padding: 5%;
-}
-
-#lt {
-    display: block;
-    padding: 10px;
-    margin-left: auto;
-    margin-right: 0em;
-    max-width: 20%;
-    max-height: 20%;
-}
-
-
-#manager {
-    align-self: flex-start;
 }
 
 @keyframes fadein {
@@ -154,8 +161,29 @@ opacity: 0;
 opacity: 0.75;
     }
 }
+/*container info*/
 
-/* Set a style for all buttons */
+/*image info*/
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 90%;
+    max-height: 90%;
+    padding: 5%;
+}
+
+#lt {
+    display: block;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: 0em;
+    max-width: 20%;
+    max-height: 20%;
+}
+/*image info*/
+
+/*button stuff*/
 button {
     background-color: rgb(255, 159, 159);
     color: white;
@@ -167,29 +195,19 @@ button {
     width: 100%;
 }
 
-.primary {
-    font-size: 2em;
+.littleButton {
+    background-color: rgb(255, 159, 159);
+    color: white;
+    padding: 5px 5px;
+    margin: 4px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 5em;
 }
+/*button stuff*/
 
-
-@keyframes gradientBG {
-    0% {
-background-position: 0% 50%;
-    }
-
-    50% {
-background-position: 100% 50%;
-    }
-
-    100% {
-background-position: 0% 50%;
-    }
-}
-
-label{
-    margin: 5px 5px 5px 5px;
-}
-
+/*forum shaping*/
 input[type=text],
 input[type=password],
 input[type=number],
@@ -205,18 +223,54 @@ textarea{
     resize: none;
 }
 
-
-
 #description{
     columns: 20
 }
+/*forum shaping*/
 
-/*table stuff below here*/
+/*check box*/
+/*check box*/
 
-table, th, td {
-    width:90%;
-    height:90%;
-    border: 1px solid black;
-    border-collapse: collapse;
-    border-radius: 25px;
+
+/*table stuff here*/
+table{
+    table-layout:fixed;
+    word-break: break-all;
+    text-align: center;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    border: 2px solid black;
+}
+th,td{  
+    overflow: hidden;
+    border-left: solid #eee;
+    border-right: solid#ddd;
+    border-top: solid #eee;
+    border-bottom: solid #ddd;
+    width: 10%;
   }
+
+table,thead,tbody,th,td,tr{
+    border-radius: 3px;
+  }
+
+tbody{
+    display:block;
+    font-size: small;
+}
+
+thead {
+    display:block;
+    width:100%;
+    background: black;
+    color:#fff;
+    font-size: small;
+}
+  
+th, td {
+    padding: 3px;
+    width:80px
+}
+
+/*table stuff here*/

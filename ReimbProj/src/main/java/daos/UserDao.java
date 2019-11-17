@@ -23,5 +23,7 @@ public interface UserDao {
 
 	User findByCred(String username, String password);
 
+	User findByUserName(int author);
+
 
 }
