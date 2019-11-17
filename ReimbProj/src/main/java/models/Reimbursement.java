@@ -18,6 +18,13 @@ public class Reimbursement {
 	private int status;
 	private int type;
 
+	
+	
+	public Reimbursement() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
 	public Reimbursement(int reimbId, int amount, LocalDateTime created, LocalDateTime resolved, String description,
 			int author, int resolver, int status, int type) {
 		super();

@@ -16,7 +16,7 @@
 
 	<servlet>
 		<servlet-name>ReimbursementMain</servlet-name>
-		<servlet-class>servlets.main</servlet-class>
+		<servlet-class>servlets.Main</servlet-class>
 	</servlet>
 
 	<servlet-mapping>
