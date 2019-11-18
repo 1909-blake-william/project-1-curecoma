@@ -67,7 +67,6 @@ public class Main extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		loggedIn = Login.loggedInUser;
-		System.out.println("request incoming");
 		if ("/ReimbProj/main".equals(req.getRequestURI()) && loggedIn.getRoleId() == 1) {
 			ObjectMapper om = new ObjectMapper(); // make object mapper
 			Reimbursement newReimb = (Reimbursement) om.readValue(req.getReader(), Reimbursement.class); //

@@ -85,11 +85,11 @@ public class ReimbDaoSerial implements ReimbDao {
 	public List<Reimbursement> findAll() {
 		try (Connection c = ConnectionUtil.getConnection()) {
 
-			String sql = "select * from ers_reimbursement\r\n" + "\r\n" + "INNER JOIN ers_reimbursement_status\r\n"
-					+ "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id\r\n" + "\r\n"
-					+ "INNER JOIN  ers_reimbursement_type\r\n"
-					+ "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id\r\n" + "\r\n"
-					+ "INNER JOIN  ers_users\r\n" + "ON ers_reimbursement.reimb_author = ers_users.ers_users_id";
+			String sql = "select * from ers_reimbursement" + "" + "INNER JOIN ers_reimbursement_status"
+					+ "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id" + ""
+					+ "INNER JOIN  ers_reimbursement_type"
+					+ "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id" + ""
+					+ "INNER JOIN  ers_users" + "ON ers_reimbursement.reimb_author = ers_users.ers_users_id";
 
 			PreparedStatement ps = c.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -110,12 +110,12 @@ public class ReimbDaoSerial implements ReimbDao {
 	public Reimbursement findByID(int reimbId) {
 		try (Connection c = ConnectionUtil.getConnection()) {
 
-			String sql = "select * from ers_reimbursement\r\n" + "\r\n" + "INNER JOIN ers_reimbursement_status\r\n"
-					+ "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id\r\n" + "\r\n"
-					+ "INNER JOIN  ers_reimbursement_type\r\n"
-					+ "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id\r\n" + "\r\n"
-					+ "INNER JOIN  ers_users\r\n" + "ON ers_reimbursement.reimb_author = ers_users.ers_users_id\r\n"
-					+ "\r\n" + "WHERE REIMB_ID = ?";
+			String sql = "select * from ers_reimbursement" + "" + "INNER JOIN ers_reimbursement_status"
+					+ "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id" + ""
+					+ "INNER JOIN  ers_reimbursement_type"
+					+ "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id" + ""
+					+ "INNER JOIN  ers_users" + "ON ers_reimbursement.reimb_author = ers_users.ers_users_id"
+					+ "" + "WHERE REIMB_ID = ?";
 
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setString(1, "" + reimbId);
@@ -137,12 +137,12 @@ public class ReimbDaoSerial implements ReimbDao {
 	public List<Reimbursement> findByUserID(int userId) {
 		try (Connection c = ConnectionUtil.getConnection()) {
 
-			String sql = "select * from ers_reimbursement\r\n" + "\r\n" + "INNER JOIN ers_reimbursement_status\r\n"
-					+ "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id\r\n" + "\r\n"
-					+ "INNER JOIN  ers_reimbursement_type\r\n"
-					+ "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id\r\n" + "\r\n"
-					+ "INNER JOIN  ers_users\r\n" + "ON ers_reimbursement.reimb_author = ers_users.ers_users_id\r\n"
-					+ "\r\n" + "WHERE REIMB_AUTHOR = ?";
+			String sql = "select * from ers_reimbursement" + "" + "INNER JOIN ers_reimbursement_status"
+					+ "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id" + ""
+					+ "INNER JOIN  ers_reimbursement_type"
+					+ "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id" + ""
+					+ "INNER JOIN  ers_users" + "ON ers_reimbursement.reimb_author = ers_users.ers_users_id"
+					+ "" + "WHERE REIMB_AUTHOR = ?";
 
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setString(1, "" + userId);
@@ -163,10 +163,10 @@ public class ReimbDaoSerial implements ReimbDao {
 	@Override
 	public int makeReimb(int amount, String description, int author, int type) {
 		try (Connection c = ConnectionUtil.getConnection()) {
-			String sql = "INSERT INTO ers_reimbursement(\r\n" + "    REIMB_ID,   REIMB_AMOUNT,   REIMB_SUBMITTED,\r\n"
-					+ "    REIMB_RESOLVED, REIMB_DESCRIPTION,  REIMB_AUTHOR,\r\n"
-					+ "    REIMB_RESOLVER, REIMB_STATUS_ID,    REIMB_TYPE_ID)\r\n" + "    VALUES(\r\n"
-					+ "    REIMB_ID_seq.nextval, ?, CURRENT_TIMESTAMP,\r\n" + "    null, ?, ?,\r\n" + "    null,1,?)";
+			String sql = "INSERT INTO ers_reimbursement(" + "    REIMB_ID,   REIMB_AMOUNT,   REIMB_SUBMITTED,"
+					+ "    REIMB_RESOLVED, REIMB_DESCRIPTION,  REIMB_AUTHOR,"
+					+ "    REIMB_RESOLVER, REIMB_STATUS_ID,    REIMB_TYPE_ID)" + "    VALUES("
+					+ "    REIMB_ID_seq.nextval, ?, CURRENT_TIMESTAMP," + "    null, ?, ?," + "    null,1,?)";
 
 			System.out.println(author);
 			System.out.println(type);
@@ -188,7 +188,7 @@ public class ReimbDaoSerial implements ReimbDao {
 	@Override
 	public int resolve(int id, int resolver, int status) {
 		try (Connection c = ConnectionUtil.getConnection()) {
-			String sql = "UPDATE ers_reimbursement\r\n"
+			String sql = "UPDATE ers_reimbursement"
 					+ "SET REIMB_RESOLVER = ?, REIMB_RESOLVED = CURRENT_TIMESTAMP, REIMB_STATUS_ID = ?"
 					+ "WHERE REIMB_ID = ?";
 
