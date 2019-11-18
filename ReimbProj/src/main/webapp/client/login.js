@@ -19,7 +19,11 @@ function login() {
             if (resp.status === 201) {
                 console.log('logged in')
                 window.location = '/main.html';
-            } else {
+            } else if (resp.status === 251) {
+                console.log('logged in')
+                window.location = '/main4Managers.html';
+            }
+            else {
                 document.getElementById('error-message').innerText = 'Failed to login';
             }
         })

@@ -19,6 +19,9 @@
                         <th>Status</th>
                         <th>Request<br>Time</th>
                         <th>Resolution<br>Time</th>
+                        <th>Approve</th>
+                        <th>Deny</th>
+                        <th>Check</th>
                     </tr>
                 </thead>
                 <tbody id="data_rows">
@@ -42,23 +45,6 @@
         </div>
 
         <div class="actions">
-            
-            <div id="user">
-                <label class="primary" for="amount"><b>Amount</b></label>
-                <input type="number" placeholder="enter in full integers" id="amount" name="amount" required>
-                <label class="primary" for="type"><b>Type</b></label>
-                <select id="type" name="type">
-                    <option value="1">Lodging</option>
-                    <option value="2">Food</option>
-                    <option value="3">Travel</option>
-                    <option value="4">Other</option>
-                </select>
-                <label class="primary" for="description"><b>Description</b></label>
-                <textarea rows="8" cols="30" type="text"  placeholder="Max 200 letters" id="description" name="description" maxlength="200"></textarea>
-                <button type="button" onclick="createReimb()">Submit New Reimbursement</button>
-                <div id="error-message"></div>
-            </div>
-            <!--
             <div id="manager">
                 <img src="logo.png" alt="Revature Logo">
                 <input type="text" placeholder="Enter requestor name" id="uname" name="requestor" required>
@@ -74,7 +60,6 @@
                 <button type="button" onclick="ApproveSelected()">Approve all selected</button>
                 <button type="button" onclick="DenySelected()">Approve all denied</button>
             </div>
-            -->
             <!--the action buttons will be displayed here-->
         </div>
     </div>

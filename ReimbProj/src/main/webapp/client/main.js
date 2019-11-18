@@ -10,8 +10,6 @@ function enter() {
             if (resp.status === 301) {
                 console.log('redirect to login')
                 window.location = '/login.html';
-            } else {
-                //insert long html that is gained from main
             }
         })
 }
