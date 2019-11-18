@@ -36,7 +36,8 @@ public class Login extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("test");
+		loggedInUser = null;
+		System.out.println("login info reset");
 	}
 
 	// get parameter only works on doGet

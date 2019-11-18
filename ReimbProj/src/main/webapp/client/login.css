@@ -161,6 +161,52 @@ opacity: 0;
 opacity: 0.75;
     }
 }
+
+@keyframes fadeout {
+    from {
+opacity: 0.75;
+    }
+
+    to {
+opacity: 0;
+    }
+}
+
+@-moz-keyframes fadeout {
+
+    /* Firefox */
+    from {
+opacity: 0.75;
+    }
+
+    to {
+opacity: 0;
+    }
+}
+
+@-webkit-keyframes fadeout {
+
+    /* Safari and Chrome */
+    from {
+opacity: 0.75;
+    }
+
+    to {
+opacity: 0;
+    }
+}
+
+@-o-keyframes fadeout {
+
+    /* Opera */
+    from {
+opacity: 0.75;
+    }
+
+    to {
+opacity: 0;
+    }
+}
 /*container info*/
 
 /*image info*/
@@ -271,6 +317,15 @@ thead {
 th, td {
     padding: 3px;
     width:80px
+}
+tbody > tr{
+    animation: fadein 1s;
+    -moz-animation: fadein 1s;
+    /* Firefox */
+    -webkit-animation: fadein 1s;
+    /* Safari and Chrome */
+    -o-animation: fadein 1s;
+    /* Opera */
 }
 
 /*table stuff here*/

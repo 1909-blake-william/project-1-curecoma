@@ -1,3 +1,13 @@
+function enter() {
+    console.log('page loaded')
+    fetch('http://localhost:8080/ReimbProj/login', {
+        method: 'GET',
+        headers: {
+            'content-type': 'application/json'
+        }
+    })
+}
+
 function login() {
 
     let username = document.getElementById('uname').value;
@@ -6,6 +16,8 @@ function login() {
         username,
         password
     };
+
+
 
     fetch('http://localhost:8080/ReimbProj/login', {
         method: 'POST',

@@ -102,6 +102,7 @@ public class Reimbursement {
 
 	public String getResolver() {
 		String u = "";
+		System.out.println("@getResolver: " + resolver);
 		try {
 			u = userDao.findByUserName(resolver).getUsername();
 		} catch (Exception e) {
@@ -144,21 +145,29 @@ public class Reimbursement {
 		return " ";
 	}
 
+	public void setType(int type) {
+		this.type = type;
+	}
+	
 	public int getAuthor(int i) {
 		return author;
+	}
+	
+	public int getResolver(int i) {
+		return resolver;
 	}
 
 	public int getType(int i) {
 		return type;
 	}
-
-	public void setType(int type) {
-		this.type = type;
+	
+	public int getStatus(int i) {
+		return status;
 	}
 
 	@Override
 	public String toString() {
-		return "Reimbursement [reimbId=" + reimbId + ", amount=" + amount + ", created=" + getCreated() + ", resolved="
+		return "Reimbursement [reimbId=" + reimbId + ", amount=" + amount + ", created=" + created + ", resolved="
 				+ resolved + ", description=" + description + ", author=" + author + ", resolver=" + resolver
 				+ ", status=" + status + ", type=" + type + "]";
 	}

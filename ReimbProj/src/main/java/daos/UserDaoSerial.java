@@ -84,15 +84,14 @@ public class UserDaoSerial implements UserDao {
 			String sql = "SELECT * FROM ERS_USERS WHERE ERS_USERS_ID = ?";
 
 			PreparedStatement ps = c.prepareStatement(sql);
-			ps.setString(1, "" + userId);
+			ps.setInt(1, userId);
 			
 			ResultSet rs = ps.executeQuery();
-			List<User> users = new ArrayList<>();
+			User user = null;
 			while (rs.next()) {
-				users.add(extractUser(rs));
+				user = extractUser(rs);
 			}
-
-			return users.get(0);
+			return user;
 
 		} catch (Exception e) {
 			e.printStackTrace();

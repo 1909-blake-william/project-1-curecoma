@@ -6,8 +6,8 @@
 
 </head>
 
-<body id="bgGrad">
-    <img id = "lt" src="logo.png" alt="Revature Logo">
+<body id="bgGrad" onload="enter();">
+    <img id="lt" src="logo.png" alt="Revature Logo">
     <div class="center">
         </br>
         <label class="primary" for="uname"><b>Username</b></label>
@@ -17,9 +17,12 @@
         <input type="password" placeholder="Enter Password" id="psw" name="psw" required>
         </br>
         <button type="button" onclick="login()">Login</button>
-        <a href="https://youtu.be/lVIxDpvjJr0?t=172"><div><input type="checkbox" name="remember" id="remember"/>
-            <label for="remember-me">Remember me</label></a><div id="error-message"></div>
-    </div>
+        <a href="https://youtu.be/lVIxDpvjJr0?t=172">
+            <div><input type="checkbox" name="remember" id="remember" />
+        </a>
+        <label for="remember-me">Remember me</label>
+        <div id="error-message">
+        </div>
 </body>
 <script src="login.js"></script>
 

@@ -6,10 +6,10 @@
 
 </head>
 
-<body id="bgGrad" onload="enter();">
+<body id="bgGrad" onload="enterUser();"  onbeforeunload="return goodbye()"> 
     <div class="main">
         <div class="reimbs">
-            <table class="fixed_header">
+            <table class="fixed_header" id="theTable">
                 <thead>
                     <tr>
                         <th>ID</th>
@@ -22,23 +22,8 @@
                     </tr>
                 </thead>
                 <tbody id="data_rows">
-                    <!--
-                        <tr id="row1000" title="this is the discription for the ticket">
-                        <td id="reimbId">1000</td>
-                        <td id="amount">$1000</td>
-                        <td id="requestor">fuckinlongerlongestSample</td>
-                        <td id="type">Food</td>
-                        <td id="status">Pending</td>
-                        <td id="tCreated">08/05/19<br>11:11:11</td>
-                        <td id="tResoved">08/05/19<br>21:11:11</td>
-                        <td id="aButon"><button type="button" onclick="approveOne(reimbId)" class="littleButton">Approve</button></td>
-                        <td id="dButton"><button type="button" onclick="denyOne(reimbId)" class="littleButton">Deny</button></td>
-                        <td id="checker"><input type="checkbox" value="selected"></td>
-                        </tr>
-                    -->
                 </tbody>
             </table>
-            <!--the reimbursements will be displayed here-->
         </div>
 
         <div class="actions">
@@ -58,24 +43,6 @@
                 <button type="button" onclick="createReimb()">Submit New Reimbursement</button>
                 <div id="error-message"></div>
             </div>
-            <!--
-            <div id="manager">
-                <img src="logo.png" alt="Revature Logo">
-                <input type="text" placeholder="Enter requestor name" id="uname" name="requestor" required>
-                <button type="button" onclick="FilterByUser()">Filter by requestor</button>
-                Select status
-                <select id="status" name="status">
-                    <option value="den">Denied</option>
-                    <option value="pen">Pending</option>
-                    <option value="app">Approved</option>
-                    <option value="den">Denied</option>
-                </select>
-                <button type="button" onclick="FilterByStatus()">Filter by status</button>
-                <button type="button" onclick="ApproveSelected()">Approve all selected</button>
-                <button type="button" onclick="DenySelected()">Approve all denied</button>
-            </div>
-            -->
-            <!--the action buttons will be displayed here-->
         </div>
     </div>
 </body>

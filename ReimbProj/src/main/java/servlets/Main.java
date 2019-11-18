@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -46,64 +47,51 @@ public class Main extends HttpServlet {
 			return;
 		}
 
-		if ("/ReimbProj/main".equals(req.getRequestURI()) && loggedIn.getRoleId() == 1/* user is non-manager */) {
-			// send huge chunk of html that is described in comment of main.html
+		List<Reimbursement> reimbs = null;
 
-		} else if ("/ReimbProj/main".equals(req.getRequestURI()) && loggedIn.getRoleId() == 2/* user is manager */) {
-
-		} else /* redirect to login */ {
-			resp.setStatus(301); // if status = 301 == no user is logged in, redirect to main menu
-			return;
+		if (loggedIn.getRoleId() == 1) {
+			reimbs = reimbDao.findByUserID(loggedIn.getId());
 		}
+
+		if (loggedIn.getRoleId() == 2) {
+			reimbs = reimbDao.findAll();
+		}
+		
+		String json = om.writeValueAsString(reimbs);
+
+		resp.addHeader("content-type", "application/json");
+		resp.getWriter().write(json);
 	}
-	// get parameter only works on doGet
+	//enter / enterUser
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		loggedIn = Login.loggedInUser;
 		System.out.println("request incoming");
-		if ("/ReimbProj/main".equals(req.getRequestURI())) {
+		if ("/ReimbProj/main".equals(req.getRequestURI()) && loggedIn.getRoleId() == 1) {
 			ObjectMapper om = new ObjectMapper(); // make object mapper
 			Reimbursement newReimb = (Reimbursement) om.readValue(req.getReader(), Reimbursement.class); //
 			reimbDao.makeReimb(newReimb.getAmount(), newReimb.getDescription(), loggedIn.getId(), newReimb.getType(0));
 			resp.setStatus(201);
+		} else {
+			resp.setStatus(403);
 		}
 	}
-
+	//create reimbursement
+	
 	protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		if ("/ReimbProj/main".equals(req.getRequestURI())) {
 			ObjectMapper om = new ObjectMapper(); // make object mapper
 			Reimbursement resolveReimb = (Reimbursement) om.readValue(req.getReader(), Reimbursement.class); //
-			reimbDao.resolve(resolveReimb.getReimbId(), loggedIn.getId(), resolveReimb.getType(0));
+			reimbDao.resolve(resolveReimb.getReimbId(), loggedIn.getId(), resolveReimb.getStatus(0));
 		}
-	}
+	}//deny / approve
 
-	public String rowTextMakerManager(int ticketID) {
-		Reimbursement r = reimbDao.findByID(ticketID);
-
-		String rowText = "<tr id=\"row" + r.getReimbId() + "\" title=\"" + r.getDescription() + "\">\n"
-				+ "<td id=\"reimbId\">" + r.getReimbId() + "</td>\n" + "<td id=\"amount\">$" + r.getAmount() + "</td>\n"
-				+ "<td id=\"requestor\">" + r.getAuthor() + "</td>\n" + "<td id=\"type\">" + r.getType() + "</td>\n"
-				+ "<td id=\"status\">" + r.getStatus() + "</td>\n" + "<td id=\"tCreated\">" + r.getCreated() + "</td>\n"
-				+ "<td id=\"tResoved\"" + r.getResolved() + "</td>\n"
-				+ "<td id=\"aButon\"><button type=\"button\" onclick=\"approveOne(" + r.getReimbId()
-				+ ")\" class=\"littleButton\">Approve</button></td>\n"
-				+ "<td id=\"dButton\"><button type=\"button\" onclick=\"denyOne(" + r.getReimbId()
-				+ ")\" class=\"littleButton\">Deny</button></td>\n"
-				+ "<td id=\"checker\"><input type=\"checkbox\" value=\"selected\"></td>\n" + "</tr>";
-		return rowText;
-	}
-
-	public String rowTextMakerUserOrResolved(int ticketID) {
-		Reimbursement r = reimbDao.findByID(ticketID);
-
-		String rowText = "<tr id=\"row" + r.getReimbId() + "\" title=\"" + r.getDescription() + "\">\n"
-				+ "<td id=\"reimbId\">" + r.getReimbId() + "</td>\n" + "<td id=\"amount\">$" + r.getAmount() + "</td>\n"
-				+ "<td id=\"requestor\">" + r.getAuthor() + "</td>\n" + "<td id=\"type\">" + r.getType() + "</td>\n"
-				+ "<td id=\"status\">" + r.getStatus() + "</td>\n" + "<td id=\"tCreated\">" + r.getCreated() + "</td>\n"
-				+ "<td id=\"tResoved\"" + r.getResolved() + "</td>\n" + "</tr>";
-		System.out.println(rowText);
-		return rowText;
-	}
-
+	protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		if ("/ReimbProj/main".equals(req.getRequestURI())) {
+			ObjectMapper om = new ObjectMapper(); // make object mapper
+			Login.loggedInUser = null;
+			loggedIn = null;
+		}
+	}// logout
 }

@@ -15,10 +15,17 @@ public interface ReimbDao {
 	 * @return the generated id for the user
 	 */
 	Reimbursement extractReimbursement(ResultSet rs);
+
 	long save(Reimbursement u);
+
 	List<Reimbursement> findAll();
+
 	Reimbursement findByID(int reimbId);
+
 	int makeReimb(int amount, String description, int author, int type);
+
 	int resolve(int id, int resolver, int type);
+
+	List<Reimbursement> findByUserID(int userId);
 
 }
