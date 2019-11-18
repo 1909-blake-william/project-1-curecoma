@@ -2,7 +2,7 @@ let allrows = "";
 
 function enter() {
     let table = document.getElementById('data_rows');
-    allrows = "";
+    table.innerHTML = "";
     fetch('http://localhost:8080/ReimbProj/main', {
         method: 'GET',
         headers: {
@@ -15,12 +15,13 @@ function enter() {
                 window.location = '/login.html';
             }
 
-            resp.json().then(data => {
-                data.forEach(reimbursement => {
-                    tableMaker(reimbursement)
-                });
-            })
+            return resp.json()
 
+        })
+        .then(data => {
+            data.forEach(reimbursement => {
+                tableMaker(reimbursement)
+            });
         })
 }/*GET*/
 
@@ -39,14 +40,15 @@ function enterUser() {
                 window.location = '/login.html';
             }
 
-            resp.json().then(data => {
-                console.log(data)
+            return resp.json()
 
-                data.forEach(reimbursement => {
-                    tableMakerUser(reimbursement)
-                });
-            })
+        })
+        .then(data => {
+            console.log(data)
 
+            data.forEach(reimbursement => {
+                tableMakerUser(reimbursement)
+            });
         })
 }/*GET*/
 
@@ -153,6 +155,7 @@ function approveOne(reimbId) {
         credentials: 'include', // put credentials: 'include' on every request to use session info //why
         body: JSON.stringify(updateInfo)
     })
+    enter();
 }/*PUT*/
 
 function denyOne(reimbId) {
@@ -171,6 +174,7 @@ function denyOne(reimbId) {
         credentials: 'include', // put credentials: 'include' on every request to use session info //why
         body: JSON.stringify(updateInfo)
     })
+    enter();
 }/*PUT*/
 
 function createReimb() {
@@ -185,7 +189,7 @@ function createReimb() {
         description = " "
     }
 
-    if (amount < 0) {
+    if (amount > 0) {
 
         let reimbData = {
             amount,
