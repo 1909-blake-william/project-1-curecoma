@@ -51,8 +51,13 @@ public class Login extends HttpServlet {
 			if (loggedInUser == null) {
 				resp.setStatus(401); // Unauthorized status code
 				return;
-			} else {
+			} else if (loggedInUser.getRoleId() == 1) {
 				resp.setStatus(201);
+				req.getSession().setAttribute("user", loggedInUser);
+				resp.getWriter().write(om.writeValueAsString(loggedInUser));
+				return;
+			} else if (loggedInUser.getRoleId() == 2) {
+				resp.setStatus(251);
 				req.getSession().setAttribute("user", loggedInUser);
 				resp.getWriter().write(om.writeValueAsString(loggedInUser));
 				return;
