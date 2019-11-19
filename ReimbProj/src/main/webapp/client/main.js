@@ -52,6 +52,9 @@ function enterUser() {
         })
 }/*GET*/
 
+/* reimbursement.created.substring(0, 19)
+    this removes the sub-second units of */
+
 function tableMaker(reimbursement) {
     let table = document.getElementById('data_rows');
     if (reimbursement.status === 'Pending') {

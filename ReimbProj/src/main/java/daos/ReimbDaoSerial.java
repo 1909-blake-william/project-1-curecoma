@@ -85,11 +85,11 @@ public class ReimbDaoSerial implements ReimbDao {
 	public List<Reimbursement> findAll() {
 		try (Connection c = ConnectionUtil.getConnection()) {
 
-			String sql = "select * from ers_reimbursement" + "" + "INNER JOIN ers_reimbursement_status"
-					+ "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id" + ""
-					+ "INNER JOIN  ers_reimbursement_type"
-					+ "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id" + ""
-					+ "INNER JOIN  ers_users" + "ON ers_reimbursement.reimb_author = ers_users.ers_users_id";
+			String sql =  "select * from ers_reimbursement " +  " " +  "INNER JOIN ers_reimbursement_status "
+					+  "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id " +  " "
+					+  "INNER JOIN  ers_reimbursement_type "
+					+  "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id " +  " "
+					+  "INNER JOIN  ers_users " +  "ON ers_reimbursement.reimb_author = ers_users.ers_users_id ";
 
 			PreparedStatement ps = c.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
@@ -137,12 +137,12 @@ public class ReimbDaoSerial implements ReimbDao {
 	public List<Reimbursement> findByUserID(int userId) {
 		try (Connection c = ConnectionUtil.getConnection()) {
 
-			String sql = "select * from ers_reimbursement" + "" + "INNER JOIN ers_reimbursement_status"
-					+ "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id" + ""
-					+ "INNER JOIN  ers_reimbursement_type"
-					+ "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id" + ""
-					+ "INNER JOIN  ers_users" + "ON ers_reimbursement.reimb_author = ers_users.ers_users_id"
-					+ "" + "WHERE REIMB_AUTHOR = ?";
+			String sql =  "select * from ers_reimbursement " +  " " +  "INNER JOIN ers_reimbursement_status "
+					+  "ON ers_reimbursement.reimb_status_id = ers_reimbursement_status.reimb_status_id " +  " "
+					+  "INNER JOIN  ers_reimbursement_type "
+					+  "ON ers_reimbursement.reimb_type_id = ers_reimbursement_type.reimb_type_id " +  " "
+					+  "INNER JOIN  ers_users " +  "ON ers_reimbursement.reimb_author = ers_users.ers_users_id "
+					+  " " +  "WHERE REIMB_AUTHOR = ? ";
 
 			PreparedStatement ps = c.prepareStatement(sql);
 			ps.setString(1, "" + userId);
