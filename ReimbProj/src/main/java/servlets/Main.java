@@ -39,10 +39,10 @@ public class Main extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		ObjectMapper om = new ObjectMapper(); // make object mapper
+		
+		loggedIn = (User) req.getSession().getAttribute("user");
 
-		if (Login.loggedInUser != null) {
-			loggedIn = Login.loggedInUser;
-		} else {
+		if (loggedIn== null) {
 			resp.setStatus(301); // if status = 301 == no user is logged in, redirect to main menu
 			return;
 		}

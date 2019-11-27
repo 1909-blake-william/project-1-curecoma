@@ -36,7 +36,7 @@ public class Login extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		loggedInUser = null;
+		req.setAttribute("user", null);
 		System.out.println("login info reset");
 	}
 
@@ -56,6 +56,7 @@ public class Login extends HttpServlet {
 				resp.setStatus(201);
 				req.getSession().setAttribute("user", loggedInUser);
 				resp.getWriter().write(om.writeValueAsString(loggedInUser));
+				User u = (User) req.getSession().getAttribute("user");
 				return;
 			} else if (loggedInUser.getRoleId() == 2) {
 				resp.setStatus(251);
